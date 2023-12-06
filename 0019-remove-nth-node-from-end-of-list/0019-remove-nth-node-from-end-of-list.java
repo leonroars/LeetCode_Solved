@@ -25,14 +25,7 @@ class Solution {
         
         // 1. Stretching `fast` pointer.
         for(int i = 0; i < n; i++){
-            if(fast == null){
-                head = slow.next; // This will make head empty(null).
-                slow.next = null;
-                return head;
-            }
-            else{
                 fast = fast.next;
-            }
         }
         
         // 1.5 Edge-Case : If there are only one element in head, and that's the one has to be deleted.

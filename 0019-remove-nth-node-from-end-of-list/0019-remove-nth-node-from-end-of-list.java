@@ -28,10 +28,11 @@ class Solution {
                 fast = fast.next;
         }
         
-        // 1.5 Edge-Case : If there are only one element in head, and that's the one has to be deleted.
+        // 1.5 Edge-Case
         if(fast == null){
             head = slow.next;
-            slow.next = null;
+            // slow.next = null;
+            
             return head;
         }
         

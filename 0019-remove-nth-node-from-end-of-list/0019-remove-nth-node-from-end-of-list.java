@@ -10,32 +10,50 @@
  */
 class Solution {
     public ListNode removeNthFromEnd(ListNode head, int n) {
+        // Concept : Two Pointers, O(n)
+        // Idea
+        // 1) Stretch 'fast' pointer to the k-th index from `slow` pointer at first.
+        //  - While doing so, check if `fast` reaches end - which is 'null'.
+        // 2) If `fast` pointer reaches destination & not eqaul to tail, 
+        //    Move `slow` pointer and `fast` pointer at the same time by one index per each iteration.
+        // 3) If `fast` pointer reaches tail node, return a node at `slow` pointer location.
         
-        // Use 3 pointers to solve this problem.
-        ListNode p1 = head;
-        ListNode p2;
-        ListNode p3 = null;
         
-        while(true){
-            p2 = p1;
-            for(int i = 0; i < n - 1; i++){p2 = p2.next;}
-            if(p2.next == null){break;}
-            
-            p3 = p1;
-            p1 = p1.next;   
+        ListNode slow = head;
+        ListNode fast = head;
+        ListNode priorSlow = head;
+        
+        // 1. Stretching `fast` pointer.
+        for(int i = 0; i < n; i++){
+            if(fast == null){
+                head = slow.next; // This will make head empty(null).
+                slow.next = null;
+                return head;
+            }
+            else{
+                fast = fast.next;
+            }
         }
         
-        if(p1 == head){
-            p3 = head.next;
-            head.next = null;
-            head = p3;
-            return head;
-        }else{
-            p3.next = p1.next;
-            p1.next = null;
-            
+        // 1.5 Edge-Case : If there are only one element in head, and that's the one has to be deleted.
+        if(fast == null){
+            head = slow.next;
+            slow.next = null;
             return head;
         }
+        
+        // 2. Moves both pointer.
+        while(fast != null){
+            priorSlow = slow;
+            slow = slow.next;
+            fast = fast.next;
+        }
+        
+        // 3. Removing a node at `slow` pointer location.
+        priorSlow.next = slow.next;
+        slow.next = null;
+        
+        return head;
         
     }
 }

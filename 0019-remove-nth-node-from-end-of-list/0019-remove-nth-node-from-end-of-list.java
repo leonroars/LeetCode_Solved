@@ -31,7 +31,6 @@ class Solution {
         // 1.5 Edge-Case
         if(fast == null){
             head = slow.next;
-            // slow.next = null;
             
             return head;
         }

@@ -20,10 +20,12 @@ import java.util.HashMap;
 
  4. While stack is not empty,
     pop each character stored inside stack and check if HashMap.containsKey(Character.getNumericValue(c)).
-    - If it's true, Do 'flipped' += HashMap.get(Character.getNumericValue(c)). Then continue.
-    - If it's false, then break;
-    - If current char is the last item in stack and BitSet[Character.getNumericValue(c)] == true,
+    - If it's true, Do 'flipped' += HashMap.get(Character.getNumericValue(c)).
+        If current char is the last item in stack and HashMap.containsKey(Character.getNumericValue(c)),
         set answer = true.
+    Then continue.
+    
+    - If it's false, then break;
         
  5. If Integer.parseInt(flipped) == n, answer = false.
  6. return answer.

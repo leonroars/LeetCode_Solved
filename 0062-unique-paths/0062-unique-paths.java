@@ -1,5 +1,5 @@
 /*
- [Main Idea] BFS + DP
+ [Main Idea] BFS
   - BFS traverse given graph or dimension in level order.
     -------------------------------------------------------
     |(0,0)| (0,1) | (0,2) | (0,3) | (0,4) | (0,5) | (0,6) |

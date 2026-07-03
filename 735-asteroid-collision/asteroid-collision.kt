@@ -29,13 +29,10 @@ class Solution {
         return stack.toIntArray()
     }
 
-    fun doTheyCollide(left: Int, right: Int): Boolean {
-        if(left > 0 && right < 0){return true}
-        return false
-    }
+    fun doTheyCollide(left: Int, right: Int) = left > 0 && right < 0
 
     fun simulateCollision(left: Int, right: Int) : Int? {
-        if(Math.abs(left) < Math.abs(right)) {return right}
+        if(abs(left) < abs(right)) {return right}
         else if(Math.abs(left) > Math.abs(right)) {return left}
         return null
     }

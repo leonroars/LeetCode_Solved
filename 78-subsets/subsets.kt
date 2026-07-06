@@ -2,10 +2,10 @@ class Solution {
     fun subsets(nums: IntArray): List<List<Int>> {
 
         val numberOfCases = 1 shl nums.size
-        val combination = mutableListOf(mutableListOf<Int>())
+        val combination = mutableListOf<List<Int>>()
 
         // mask : combination of selected indices represented as integer value
-        for(mask in 1..<numberOfCases) {
+        for(mask in 0..<numberOfCases) {
             // find out which index has been selected and make set from it.
             val currentSet = mutableListOf<Int>()
 

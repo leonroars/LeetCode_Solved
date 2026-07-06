@@ -1,36 +1,21 @@
 class Solution {
-    
-    val combination = mutableListOf<List<Int>> ()
-
     fun subsets(nums: IntArray): List<List<Int>> {
-        for(i in 0..nums.size){findSubset(i, -1, mutableListOf(), HashSet<Int>(), nums)}
+
+        val numberOfCases = 1 shl nums.size
+        val combination = mutableListOf(mutableListOf<Int>())
+
+        // mask : combination of selected indices represented as integer value
+        for(mask in 1..<numberOfCases) {
+            // find out which index has been selected and make set from it.
+            val currentSet = mutableListOf<Int>()
+
+            for(i in 0..<nums.size){
+                // i'th number has been selected
+                if(mask and (1 shl i) != 0){currentSet.add(nums[i])}
+            }
+            combination.add(currentSet)
+        }
 
         return combination
-    }
-
-    private fun findSubset(
-        targetDepth: Int,
-        lastIndex: Int,
-      currentSet: List<Int>,
-       used: HashSet<Int>,
-        nums: IntArray)
-    {
-        // Base Case
-        if(currentSet.size == targetDepth) {
-            combination.add(currentSet)
-            return
-        }
-
-        // General Case
-        for(i in lastIndex + 1..<nums.size){
-            // only if the number has not been selected
-            if(!used.contains(nums[i])){
-                used.add(nums[i]) // Visit the number
-
-                // list + item -> Kotlin creates new instance with newly added item.
-                findSubset(targetDepth, i, currentSet + nums[i], used, nums)
-                used.remove(nums[i]) // Unvisit the number
-            }
-        }
     }
 }
